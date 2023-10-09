@@ -7,7 +7,6 @@ import { GreenLightEvent } from './pubsubEvents';
 
 generateUI();
 const { scene, renderer, camera, controls } = setupScene();
-
 scene.background = new THREE.Color(0x000);
 
 scene.add(
