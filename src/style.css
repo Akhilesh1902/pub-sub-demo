@@ -1,8 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 #app {
   width: 100%;
+  /* height: 100%; */
+  height: 100vh;
+  display: flex;
+  padding: 1em;
 }
 
 .canvas-container {
-  width: 100% !important;
-  aspect-ratio: 1;
+  width: 50%;
+  height: 100%;
+  /* aspect-ratio: 1; */
+}
+
+.UI-container {
+  width: fit-content;
+  padding: 2em;
+}
+
+@media screen and (max-width: 600px) {
+  #app {
+    width: 100vw;
+    height: auto;
+    flex-direction: column;
+    padding: 0;
+    padding: 0.5em;
+  }
+
+  .canvas-container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
 }

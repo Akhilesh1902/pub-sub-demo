@@ -7,7 +7,6 @@ import { GreenLightEvent } from './pubsubEvents';
 
 generateUI();
 const { scene, renderer, camera, controls } = setupScene();
-console.log(scene);
 
 scene.background = new THREE.Color(0x000);
 
@@ -29,6 +28,11 @@ setTimeout(() => {
 
   PubSub.subscribe(GreenLightEvent, (_, msg: boolean) => {
     greenLight.intensity = msg ? 30 : 0;
+    if (!msg) {
+      scene.remove(greenbulb);
+    } else {
+      scene.add(greenbulb);
+    }
   });
 }, 3000);
 
