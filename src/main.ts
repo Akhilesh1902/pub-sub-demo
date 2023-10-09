@@ -12,7 +12,7 @@ scene.background = new THREE.Color(0x000);
 scene.add(
   new THREE.Mesh(
     new THREE.BoxGeometry(10, 0.1, 10),
-    new THREE.MeshStandardMaterial({ color: 0xff00ff })
+    new THREE.MeshStandardMaterial({ color: 0xffffff })
   )
 );
 
@@ -26,7 +26,7 @@ setTimeout(() => {
   scene.add(greenLight, greenbulb);
 
   PubSub.subscribe(GreenLightEvent, (_, msg: boolean) => {
-    greenLight.intensity = msg ? 30 : 0;
+    greenLight.intensity = msg ? 10 : 0;
     if (!msg) {
       scene.remove(greenbulb);
     } else {
@@ -51,13 +51,17 @@ type CreateLightProps = {
 };
 
 function createLight({ position, name, id, color }: CreateLightProps) {
-  const pointLight = new THREE.PointLight(color, 30, 5, 1);
+  const pointLight = new THREE.PointLight(color, 10);
   pointLight.name = name + id;
   pointLight.position.copy(position);
 
   const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(0.1, 8, 8),
-    new THREE.MeshStandardMaterial({ color: pointLight.color })
+    new THREE.MeshStandardMaterial({
+      color: pointLight.color,
+      emissive: color,
+      emissiveIntensity: 1,
+    })
   );
 
   sphere.position.copy(pointLight.position);
