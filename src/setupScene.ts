@@ -1,5 +1,10 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { ActiveControl, DayNightToggle } from './pubsubEvents';
+
+const globalState = {
+  isday: false,
+};
 
 export default function setupScene() {
   const canvasWrapper = document.querySelector('.canvas-container')!;
@@ -29,6 +34,17 @@ export default function setupScene() {
   controls.target.set(0, 1.5, 0);
   // controls.update();
 
+  function updateBackground(color: THREE.Color) {
+    scene.background = color;
+  }
+
+  // pub-sub implimentation
+  PubSub.subscribe(DayNightToggle, (_, data) => {
+    updateBackground(new THREE.Color(data ? 0xffffff : 0x000));
+    globalState.isday = data;
+    PubSub.publish(ActiveControl, { active: !data });
+  });
+
   return {
     scene,
     renderer,
@@ -36,3 +52,5 @@ export default function setupScene() {
     controls,
   };
 }
+
+export { globalState };

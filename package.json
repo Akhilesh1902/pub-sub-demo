@@ -16,6 +16,7 @@
     "@types/pubsub-js": "^1.8.4",
     "@types/three": "^0.156.0",
     "pubsub-js": "^1.9.4",
-    "three": "^0.157.0"
+    "three": "^0.157.0",
+    "three-gltf-extensions": "^0.0.15"
   }
 }
