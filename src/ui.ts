@@ -92,7 +92,7 @@ export function generateLightUI(data: LightUIDataProps) {
 
   const activeControl = elementFromHtmlString(`
   <label >
-  <input type="checkbox" data-inputType="activeControl" class="w-4 h-4 " checked="${data.active}" name="${data.name}"/>
+  <input type="checkbox" data-inputType="activeControl" class="w-4 h-4 "  name="${data.name}"/>
   ${data.name}
   </label>
   `) as HTMLInputElement;

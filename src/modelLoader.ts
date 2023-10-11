@@ -25,5 +25,11 @@ export default async function modelLoader({ Name, modelUrl }: Props) {
   loader.register((parser: any) => new GLTFMaterialsVariantsExtension(parser));
 
   const gltfData = await loader.loadAsync(modelUrl);
+  gltfData.scene.traverse((i) => {
+    if (i.isMesh) {
+      i.castShadow = true;
+      i.receiveShadow = true;
+    }
+  });
   return gltfData;
 }

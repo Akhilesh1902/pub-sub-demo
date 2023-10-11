@@ -23,6 +23,7 @@ export default async function generateFurniture() {
   lightState.intensity = tableLamp.intensity;
   lightState.color = tableLamp.color.getHexString();
   tableLamp.intensity = 0;
+  tableLamp.castShadow = true;
 
   function genTableLampUI() {
     generateLightUI({

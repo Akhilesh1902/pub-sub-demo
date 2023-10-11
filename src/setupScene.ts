@@ -22,11 +22,20 @@ export default function setupScene() {
 
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
+
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true,
   });
   renderer.setSize(canvasWrapper.clientWidth, canvasWrapper.clientHeight);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.physicallyCorrectLights = true;
+  renderer.xr.enabled = true;
+  renderer.setPixelRatio(window.devicePixelRatio * 0.5);
+  renderer.precision = 'lowp';
 
   canvasWrapper.append(renderer.domElement);
   const controls = new OrbitControls(camera, renderer.domElement);
