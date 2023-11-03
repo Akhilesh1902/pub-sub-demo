@@ -33,9 +33,13 @@ export default function setupScene() {
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.physicallyCorrectLights = true;
-  renderer.xr.enabled = true;
-  renderer.setPixelRatio(window.devicePixelRatio * 0.5);
-  renderer.precision = 'lowp';
+  // renderer.xr.enabled = true;
+  console.log(window.devicePixelRatio);
+  renderer.setPixelRatio(
+    window.devicePixelRatio > 1 ? 1 : window.devicePixelRatio
+  );
+
+  // renderer.precision = 'lowp';
 
   canvasWrapper.append(renderer.domElement);
   const controls = new OrbitControls(camera, renderer.domElement);
